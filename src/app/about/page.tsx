@@ -1,94 +1,84 @@
-import { Heart, ShieldCheck, Eye, Users } from "lucide-react";
+import type { Metadata } from "next";
+import Image from "next/image";
+import Link from "next/link";
+import { site, team, values } from "@/config/site";
+import { PageHero, SectionHeading } from "@/components/site/blocks";
+
+export const metadata: Metadata = {
+  title: "About us",
+  description: `Founded in ${site.founded}, ${site.name} began with hot meals for seniors and now runs education, outreach, elderly care and youth programmes.`,
+  alternates: { canonical: "/about" },
+};
+
+const initials = (name: string) => name.replace(/^Dr\.\s*/, "").split(" ").map((p) => p[0]).slice(0, 2).join("");
 
 export default function AboutPage() {
   return (
-    <div className="flex flex-col min-h-screen">
-      {/* Header */}
-      <section className="pt-32 pb-20 bg-slate-50 text-center px-4 border-b border-slate-100">
-        <h1 className="text-4xl md:text-5xl font-bold text-slate-900 mb-6">About Us</h1>
-        <p className="text-lg text-slate-600 max-w-2xl mx-auto">
-          We are LifeSpring Foundation, a dedicated group of individuals working to uplift communities and bring lasting change to Singapore.
-        </p>
-      </section>
+    <>
+      <PageHero
+        eyebrow="About us"
+        title={<>Neighbours first. <em className="text-sunrise">A charity second.</em></>}
+        intro={`${site.name} started in ${site.founded} as a few volunteers cooking hot meals for seniors in mature estates. It has grown, but the idea hasn't changed: show up, listen, and stay.`}
+      />
 
-      {/* Story, Vision, Mission */}
-      <section className="py-20 px-4">
-        <div className="container mx-auto max-w-4xl space-y-16">
-          <div className="space-y-6 text-center">
-            <h2 className="text-3xl font-bold text-slate-900">Our Story</h2>
-            <p className="text-lg text-slate-600 leading-relaxed text-justify md:text-center">
-              Founded in 2010 by a group of passionate community leaders, LifeSpring Foundation began as a small grassroots initiative providing hot meals to the elderly in mature estates. Over the past decade, we have grown into a comprehensive charitable organization, addressing complex social issues from educational inequality to youth empowerment, while remaining rooted in our core belief that every individual deserves a fair chance to thrive.
+      <section className="container-x grid items-center gap-12 py-20 sm:py-28 lg:grid-cols-2 lg:gap-20">
+        <div className="arch relative mx-auto aspect-[4/5] w-full max-w-md overflow-hidden bg-sage">
+          <Image src="/about.png" alt="A volunteer and an elderly woman painting together" fill sizes="(max-width: 1024px) 90vw, 40vw" className="object-cover" />
+        </div>
+        <div className="space-y-10">
+          <div>
+            <p className="eyebrow">Our story</p>
+            <p className="mt-4 text-lg leading-relaxed text-ink-soft">
+              Over the past decade we have grown into a full charity, working on educational inequality, isolation among seniors and support for
+              young people at risk, while staying rooted in one belief: every person deserves a fair chance to thrive.
             </p>
           </div>
-          
-          <div className="grid md:grid-cols-2 gap-12">
-            <div className="bg-primary/5 p-8 rounded-2xl border border-primary/10">
-              <h3 className="text-2xl font-bold text-primary mb-4">Our Vision</h3>
-              <p className="text-slate-700 leading-relaxed">
-                A compassionate and inclusive Singapore where every individual, regardless of their background, has the opportunity to achieve their full potential and lead a dignified life.
-              </p>
+          <div className="grid gap-6 sm:grid-cols-2">
+            <div className="rounded-3xl bg-forest p-7 text-white">
+              <h2 className="title-3">Our vision</h2>
+              <p className="mt-3 leading-relaxed text-white/85">A compassionate, inclusive {site.country} where everyone, whatever their background, can reach their potential and live with dignity.</p>
             </div>
-            <div className="bg-emerald-50 p-8 rounded-2xl border border-emerald-100">
-              <h3 className="text-2xl font-bold text-emerald-700 mb-4">Our Mission</h3>
-              <p className="text-slate-700 leading-relaxed">
-                To empower vulnerable families and individuals through targeted educational, healthcare, and community development programs, fostering resilience and sustainable growth.
-              </p>
+            <div className="rounded-3xl bg-sun p-7 text-ink">
+              <h2 className="title-3">Our mission</h2>
+              <p className="mt-3 leading-relaxed">To empower vulnerable families and individuals through education, healthcare and community programmes that build lasting resilience.</p>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Core Values */}
-      <section className="py-24 bg-slate-900 text-white relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-primary/10 to-emerald-900/20" />
-        <div className="container mx-auto px-4 relative z-10">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl font-bold mb-4">Our Core Values</h2>
-            <p className="text-slate-400 max-w-2xl mx-auto">These principles guide every decision we make and every program we run.</p>
-          </div>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8 max-w-5xl mx-auto">
-            {[
-              { icon: Heart, title: "Compassion", desc: "Approaching every situation with empathy and understanding." },
-              { icon: ShieldCheck, title: "Integrity", desc: "Upholding the highest ethical standards in our work." },
-              { icon: Eye, title: "Transparency", desc: "Being accountable and open about our resources and impact." },
-              { icon: Users, title: "Community", desc: "Believing in the power of collective action and support." },
-            ].map((value, i) => (
-              <div key={i} className="text-center p-6 rounded-xl bg-white/5 border border-white/10 backdrop-blur-sm">
-                <div className="w-16 h-16 bg-white/10 rounded-full flex items-center justify-center mx-auto mb-6">
-                  <value.icon className="h-8 w-8 text-emerald-400" />
-                </div>
-                <h3 className="text-xl font-bold mb-3">{value.title}</h3>
-                <p className="text-sm text-slate-300 leading-relaxed">{value.desc}</p>
+      <section className="border-y border-line bg-surface py-20 sm:py-28">
+        <div className="container-x">
+          <SectionHeading eyebrow="What guides us" title="Our values" />
+          <dl className="grid gap-px overflow-hidden rounded-3xl border border-line bg-line sm:grid-cols-2 lg:grid-cols-4">
+            {values.map((v, i) => (
+              <div key={v.title} className="bg-surface p-7">
+                <dt className="title-3 font-serif font-semibold text-ink">
+                  <span className="block text-2xl text-sunrise">0{i + 1}</span>
+                  <span className="mt-4 block">{v.title}</span>
+                </dt>
+                <dd className="mt-2 leading-relaxed text-ink-soft">{v.body}</dd>
               </div>
             ))}
-          </div>
+          </dl>
         </div>
       </section>
 
-      {/* Leadership Team */}
-      <section className="py-24 px-4 bg-slate-50">
-        <div className="container mx-auto">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl font-bold text-slate-900 mb-4">Our Leadership</h2>
-            <p className="text-lg text-slate-600 max-w-2xl mx-auto">Guided by experienced professionals dedicated to social impact.</p>
-          </div>
-          <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
-            {[
-              { name: "Dr. Amanda Chen", role: "Executive Director", img: "bg-blue-100/50 text-blue-800" },
-              { name: "Marcus Tan", role: "Head of Programs", img: "bg-emerald-100/50 text-emerald-800" },
-              { name: "Sarah Ibrahim", role: "Community Lead", img: "bg-orange-100/50 text-orange-800" },
-            ].map((leader, i) => (
-              <div key={i} className="bg-white rounded-2xl overflow-hidden shadow-sm border border-slate-100 text-center pb-8 transition-transform hover:-translate-y-1">
-                <div className={`aspect-square ${leader.img.split(' ')[0]} mb-6 flex items-center justify-center`}>
-                    <Users className={`w-16 h-16 ${leader.img.split(' ')[1]} opacity-20`} />
-                </div>
-                <h3 className="text-xl font-bold text-slate-900 mb-1">{leader.name}</h3>
-                <p className="text-primary font-medium">{leader.role}</p>
-              </div>
-            ))}
-          </div>
+      <section className="container-x py-20 sm:py-28">
+        <SectionHeading eyebrow="Leadership" title="The people accountable to you" intro="Our board and staff report to donors and beneficiaries every year." />
+        <ul className="grid gap-5 sm:grid-cols-3">
+          {team.map((m) => (
+            <li key={m.name} className="card p-6">
+              <span className="arch grid h-24 w-20 place-items-center bg-sage font-serif text-3xl font-semibold text-forest" aria-hidden="true">{initials(m.name)}</span>
+              <h3 className="mt-5 font-sans text-xl font-semibold text-ink">{m.name}</h3>
+              <p className="text-sunrise">{m.role}</p>
+            </li>
+          ))}
+        </ul>
+        <div className="mt-14 flex flex-wrap gap-3">
+          <Link href="/volunteer" className="btn-forest">Join as a volunteer</Link>
+          <Link href="/impact" className="btn-ghost">Read our impact report</Link>
         </div>
       </section>
-    </div>
+    </>
   );
 }

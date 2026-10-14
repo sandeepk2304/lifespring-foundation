@@ -1,258 +1,227 @@
+import Image from "next/image";
 import Link from "next/link";
-import { Button } from "@/components/ui/button";
-import { ArrowRight, HeartHandshake, Users, GraduationCap, Stethoscope, ChevronRight, Quote } from "lucide-react";
+import { ArrowRight, ArrowUpRight, HandHeart, Handshake, Users } from "lucide-react";
+import { campaign, need, partners, programs, site, stats, testimonials } from "@/config/site";
+import { DonationWidget } from "@/components/site/DonationWidget";
+import { CampaignProgress, FinanceBreakdown, Marquee, SectionHeading, SunShape } from "@/components/site/blocks";
+
+const waysToHelp = [
+  { icon: HandHeart, title: "Give monthly", body: "A regular gift lets us plan a whole year of meals, tuition and visits.", href: "/donate", cta: "Become a monthly donor" },
+  { icon: Users, title: "Volunteer", body: "Two hours a week as a befriender, tutor or mentor changes someone's week.", href: "/volunteer", cta: "See open roles" },
+  { icon: Handshake, title: "Partner with us", body: "Team volunteering days, matched giving and sponsored programmes for companies.", href: "/contact", cta: "Talk to our team" },
+];
 
 export default function Home() {
+  const [featured, ...moreQuotes] = testimonials;
   return (
-    <div className="flex flex-col min-h-screen">
-      {/* Green Theme Hero Section */}
-      <section className="relative min-h-[90vh] lg:min-h-screen flex items-center pt-32 pb-20 lg:pt-32 overflow-hidden bg-gradient-to-br from-[#f0fdf4] to-[#ecfdf5]">
-        {/* Abstract Green Background Elements */}
-        <div className="absolute inset-0 overflow-hidden pointer-events-none">
-           <div className="absolute top-[-10%] left-[-10%] w-[50%] h-[50%] rounded-full bg-emerald-300/20 blur-[120px]" />
-           <div className="absolute bottom-[-10%] right-[-10%] w-[50%] h-[50%] rounded-full bg-teal-300/20 blur-[120px]" />
-           <div className="absolute top-[20%] right-[20%] w-[30%] h-[30%] rounded-full bg-green-200/20 blur-[80px]" />
-        </div>
-
-        <div className="container mx-auto px-4 md:px-6 relative z-10">
-          <div className="flex flex-col lg:flex-row items-center gap-16 lg:gap-12">
-            
-            {/* Left Content */}
-            <div className="w-full lg:w-1/2 space-y-8 text-center lg:text-left animate-in fade-in slide-in-from-bottom-8 duration-1000">
-              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/80 backdrop-blur-sm border border-emerald-100 shadow-sm text-sm font-semibold text-emerald-800">
-                <span className="flex h-2 w-2 rounded-full bg-emerald-500 animate-pulse" />
-                Singapore's Charity of Choice 2026
-              </div>
-              
-              <h1 className="text-5xl lg:text-6xl xl:text-7xl font-bold text-emerald-950 leading-[1.1] tracking-tight">
-                Empowering the <br className="hidden lg:block" />
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-600 to-teal-500">
-                  Vulnerable
-                </span>
-              </h1>
-              
-              <p className="text-lg md:text-xl text-emerald-900/70 max-w-xl mx-auto lg:mx-0 leading-relaxed">
-                We are dedicated to bringing hope and tangible support to families and individuals in need. Join us in our mission to create a compassionate and inclusive community for all.
-              </p>
-              
-              <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
-                <Link href="/about" className="inline-flex items-center justify-center bg-emerald-600 hover:bg-emerald-700 text-white h-14 px-8 text-lg font-medium rounded-full shadow-lg shadow-emerald-600/20 transition-transform hover:scale-105">
-                  Learn More
-                </Link>
-                <Link href="/contact" className="inline-flex items-center justify-center border-2 border-emerald-200 text-emerald-800 hover:bg-emerald-50 hover:border-emerald-300 h-14 px-8 text-lg font-medium rounded-full transition-transform hover:scale-105 gap-2">
-                  Contact Us <ChevronRight className="w-4 h-4" />
-                </Link>
-              </div>
-
-              {/* Trust Indicators */}
-              <div className="pt-8 flex items-center justify-center lg:justify-start gap-6 text-emerald-800/80 text-sm font-medium">
-                <div className="flex -space-x-3">
-                  {[1, 2, 3, 4].map((i) => (
-                    <div key={i} className={`w-10 h-10 rounded-full border-2 border-emerald-50 bg-emerald-100 bg-[url('https://i.pravatar.cc/100?img=${i}')] bg-cover z-[${5-i}]`} />
-                  ))}
-                </div>
-                <p>Join <strong className="text-emerald-950">850+</strong> active volunteers</p>
-              </div>
-            </div>
-
-            {/* Right Image/Graphic */}
-            <div className="w-full lg:w-1/2 relative animate-in fade-in slide-in-from-right-8 duration-1000 delay-200 fill-mode-both">
-               <div className="relative w-full aspect-square md:aspect-[4/3] max-w-[600px] mx-auto lg:ml-auto">
-                 {/* Decorative element behind */}
-                 <div className="absolute -inset-4 bg-gradient-to-tr from-emerald-200 to-teal-100/50 rounded-[2.5rem] -z-10" />
-                 
-                 {/* Main Image */}
-                 <div className="absolute inset-0 rounded-[2rem] overflow-hidden shadow-2xl border-[6px] border-white bg-white">
-                   <img src="/hero.png" alt="Community Volunteering" className="w-full h-full object-cover" />
-                 </div>
-                 
-                 {/* Floating Badge */}
-                 <div className="absolute -bottom-6 -left-6 md:-left-12 bg-white p-4 rounded-2xl shadow-xl border border-emerald-50 flex items-center gap-4 animate-bounce hover:animate-none">
-                   <div className="w-12 h-12 rounded-full bg-emerald-50 flex items-center justify-center shrink-0">
-                     <HeartHandshake className="w-6 h-6 text-emerald-600" />
-                   </div>
-                   <div>
-                     <p className="text-sm font-bold text-emerald-950">2,500+ Families</p>
-                     <p className="text-xs text-emerald-700/70">Supported this year</p>
-                   </div>
-                 </div>
-               </div>
-            </div>
-
-          </div>
-        </div>
-      </section>
-
-      {/* About Preview */}
-      <section className="py-20 md:py-28 bg-white">
-        <div className="container mx-auto px-4 md:px-6">
-          <div className="grid md:grid-cols-2 gap-12 items-center">
-            <div className="relative aspect-square md:aspect-[4/3] rounded-2xl overflow-hidden shadow-lg border border-slate-100">
-              <img src="/about.png" alt="Volunteers helping elderly" className="w-full h-full object-cover" />
-              <div className="absolute inset-0 ring-1 ring-inset ring-black/10 rounded-2xl" />
-            </div>
-            <div className="space-y-6">
-              <h2 className="text-3xl md:text-4xl font-bold text-slate-900 tracking-tight">
-                Compassion in Action
-              </h2>
-              <p className="text-lg text-slate-600 leading-relaxed">
-                Founded with a simple belief that everyone deserves a fair chance, LifeSpring Foundation has been at the forefront of social impact in Singapore. We believe in holistic support that goes beyond immediate relief.
-              </p>
-              <ul className="space-y-3">
-                {['Compassion and Empathy', 'Integrity & Transparency', 'Community Resilience'].map((val, i) => (
-                  <li key={i} className="flex items-center gap-3">
-                    <div className="h-6 w-6 rounded-full bg-emerald-100 flex items-center justify-center shrink-0">
-                      <ChevronRight className="h-4 w-4 text-emerald-600" />
-                    </div>
-                    <span className="text-slate-700 font-medium">{val}</span>
-                  </li>
-                ))}
-              </ul>
-              <Button variant="link" className="text-primary font-semibold px-0 hover:no-underline group">
-                <Link href="/about" className="flex items-center gap-2">
-                  Read Our Full Story
-                  <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
-                </Link>
-              </Button>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Our Impact Statistics */}
-      <section className="py-20 bg-primary text-white">
-        <div className="container mx-auto px-4 md:px-6">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">Our Impact By The Numbers</h2>
-            <p className="text-primary-foreground/80 max-w-2xl mx-auto">
-              Through the generous support of our donors and volunteers, we've made significant strides in uplifting communities.
+    <>
+      {/* Hero */}
+      <section className="relative overflow-hidden">
+        <SunShape className="pointer-events-none absolute -left-40 bottom-0 w-[36rem] opacity-40" />
+        <div className="container-x relative grid items-center gap-12 pb-16 pt-10 sm:pt-16 lg:grid-cols-[1.1fr_0.9fr] lg:gap-16 lg:pb-24">
+          <div>
+            <p className="eyebrow">{site.country} · since {site.founded}</p>
+            <h1 className="display mt-5 text-ink">
+              Every family deserves a{" "}
+              <em className="relative whitespace-nowrap text-sunrise">
+                spring
+                <svg viewBox="0 0 200 20" className="absolute -bottom-2 left-0 w-full" aria-hidden="true">
+                  <path d="M3 14c50-10 140-12 194-4" stroke="var(--sun)" strokeWidth="6" fill="none" strokeLinecap="round" />
+                </svg>
+              </em>{" "}
+              after winter.
+            </h1>
+            <p className="mt-7 max-w-xl text-lg leading-relaxed text-ink-soft sm:text-xl">
+              We stand beside families, seniors and young people in {site.country} through hard seasons, with meals, mentoring,
+              scholarships and care that lasts until things get better.
             </p>
-          </div>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-            {[
-              { label: "Families Supported", value: "2,500+" },
-              { label: "Community Programs", value: "48" },
-              { label: "Active Volunteers", value: "850+" },
-              { label: "Funds Raised (SGD)", value: "$5.2M" },
-            ].map((stat, i) => (
-              <div key={i} className="text-center p-6 rounded-2xl bg-white/10 border border-white/20 shadow-sm backdrop-blur-sm">
-                <div className="text-4xl md:text-5xl font-bold text-white mb-2 drop-shadow-sm">{stat.value}</div>
-                <div className="text-sm md:text-base font-semibold text-emerald-50">{stat.label}</div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Programs Overview */}
-      <section className="py-20 md:py-28 bg-slate-50">
-        <div className="container mx-auto px-4 md:px-6">
-          <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
-            <div className="max-w-2xl">
-              <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-4 tracking-tight">Our Core Programs</h2>
-              <p className="text-slate-600 text-lg">
-                We take a multi-faceted approach to community support, addressing education, healthcare, and sustainable development.
-              </p>
+            <div className="mt-9 flex flex-col gap-3 sm:flex-row">
+              <Link href="/donate" className="btn-donate">Give today <ArrowRight className="size-4" /></Link>
+              <Link href="/programs" className="btn-ghost">See what we do</Link>
             </div>
-            <Button variant="outline" className="shrink-0 border-slate-300">
-              <Link href="/programs">View All Programs</Link>
-            </Button>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {[
-              { title: "Education Support", icon: GraduationCap, color: "text-blue-500", bg: "bg-blue-100", desc: "Scholarships and mentoring for underprivileged students." },
-              { title: "Community Development", icon: Users, color: "text-emerald-500", bg: "bg-emerald-100", desc: "Building resilient neighborhoods through skill workshops." },
-              { title: "Healthcare Assistance", icon: Stethoscope, color: "text-orange-500", bg: "bg-orange-100", desc: "Subsidized medical care and mental health counseling." },
-              { title: "Youth Empowerment", icon: HeartHandshake, color: "text-purple-500", bg: "bg-purple-100", desc: "Leadership training and career guidance for at-risk youth." },
-            ].map((prog, i) => (
-              <div key={i} className="bg-white p-6 rounded-2xl shadow-sm border border-slate-100 hover:shadow-md transition-shadow group">
-                <div className={`w-12 h-12 rounded-xl ${prog.bg} flex items-center justify-center mb-6`}>
-                  <prog.icon className={`h-6 w-6 ${prog.color}`} />
-                </div>
-                <h3 className="text-xl font-bold text-slate-900 mb-3 group-hover:text-primary transition-colors">{prog.title}</h3>
-                <p className="text-slate-600 mb-4">{prog.desc}</p>
-                <Link href={`/programs#${prog.title.toLowerCase().replace(' ', '-')}`} className="inline-flex items-center text-sm font-semibold text-primary">
-                  Learn more <ArrowRight className="h-4 w-4 ml-1" />
+          <div className="relative mx-auto w-full max-w-md lg:max-w-none">
+            <div className="arch relative aspect-[4/5] overflow-hidden bg-sage">
+              <Image
+                src="/hero.png"
+                alt="Volunteers handing out food packs to residents at a community event"
+                fill
+                preload
+                quality={60}
+                sizes="(max-width: 640px) 85vw, (max-width: 1024px) 28rem, 40vw"
+                className="object-cover"
+              />
+            </div>
+            {campaign && (
+              <div className="card absolute -bottom-8 left-4 right-4 p-5 shadow-[0_20px_50px_-20px_rgb(23_37_29/0.45)] sm:-left-10 sm:right-auto sm:w-80">
+                <p className="text-xs font-semibold uppercase tracking-[0.16em] text-sunrise">Live appeal</p>
+                <p className="mt-1 font-semibold text-ink">{campaign.title}</p>
+                <div className="mt-3"><CampaignProgress /></div>
+              </div>
+            )}
+          </div>
+        </div>
+      </section>
+
+      <div className="mt-10 lg:mt-0">
+        <Marquee items={["Hot meals for seniors", "Scholarships", "Weekly befriending", "Health screenings", "Youth mentoring", "Crisis relief"]} />
+      </div>
+
+      {/* The need */}
+      <section className="container-x pt-20 sm:pt-28">
+        <div className="grid gap-10 lg:grid-cols-[1.1fr_0.9fr] lg:items-end lg:gap-20">
+          <div>
+            <p className="eyebrow">Why we exist</p>
+            <h2 className="title-2 mt-3 text-ink">{need.title}</h2>
+            <p className="mt-5 max-w-2xl text-lg leading-relaxed text-ink-soft">{need.body}</p>
+          </div>
+          <dl className="grid gap-6 sm:grid-cols-3 lg:grid-cols-1">
+            {need.points.map((p) => (
+              <div key={p.label} className="flex items-baseline gap-4 border-b border-line pb-4">
+                <dt className="sr-only">{p.label}</dt>
+                <dd className="figure !text-[2.25rem] shrink-0 text-sunrise">{p.value}</dd>
+                <dd className="text-ink-soft">{p.label}</dd>
+              </div>
+            ))}
+          </dl>
+        </div>
+      </section>
+
+      {/* Numbers */}
+      <section className="container-x py-20 sm:py-28">
+        <div className="grid gap-10 lg:grid-cols-[0.8fr_1.2fr] lg:gap-20">
+          <div>
+            <p className="eyebrow">This year, together</p>
+            <h2 className="title-2 mt-3 text-ink">Small acts, <em className="text-forest">counted honestly.</em></h2>
+            <p className="mt-5 text-lg leading-relaxed text-ink-soft">
+              We publish our numbers and our accounts every year, so you always know what your support makes possible.
+            </p>
+            <Link href="/impact" className="mt-6 inline-flex items-center gap-2 font-semibold text-forest underline decoration-sun decoration-2 underline-offset-4">
+              Read our impact report <ArrowRight className="size-4" />
+            </Link>
+          </div>
+          <dl className="grid grid-cols-2 gap-x-6 gap-y-10 border-t border-line pt-10 sm:gap-x-10">
+            {stats.map((s) => (
+              <div key={s.label} className="border-l-2 border-sun pl-5">
+                <dt className="text-sm leading-snug text-ink-soft">{s.label}</dt>
+                <dd className="figure mt-2 text-ink">{s.value}</dd>
+              </div>
+            ))}
+          </dl>
+        </div>
+      </section>
+
+      {/* Programmes */}
+      <section className="border-t border-line bg-surface py-20 sm:py-28">
+        <div className="container-x">
+          <SectionHeading
+            eyebrow="What we do"
+            title={<>Four programmes, <em className="text-sunrise">one community.</em></>}
+            intro="Each one is designed with the people it serves, and each one is measured."
+            action={{ href: "/programs", label: "All programmes" }}
+          />
+          <ol className="border-t border-ink/15">
+            {programs.map((p, i) => (
+              <li key={p.slug}>
+                <Link
+                  href={`/programs#${p.slug}`}
+                  className="group grid grid-cols-[auto_1fr_auto] items-center gap-x-5 gap-y-2 border-b border-ink/15 py-7 transition hover:bg-paper sm:gap-x-10 sm:px-4 md:grid-cols-[4rem_minmax(0,1fr)_minmax(0,1.2fr)_2rem]"
+                >
+                  <span className="col-start-1 row-start-1 font-serif text-2xl font-medium text-sunrise sm:text-3xl">0{i + 1}</span>
+                  <h3 className="title-3 col-start-2 row-start-1 text-ink transition group-hover:text-forest">{p.title}</h3>
+                  <p className="col-span-3 col-start-1 row-start-2 text-ink-soft md:col-span-1 md:col-start-3 md:row-start-1">
+                    {p.short} <span className="whitespace-nowrap font-semibold text-forest">{p.reach}.</span>
+                  </p>
+                  <ArrowUpRight className="col-start-3 row-start-1 size-7 justify-self-end text-ink-soft transition group-hover:-translate-y-1 group-hover:translate-x-1 group-hover:text-sunrise md:col-start-4" />
                 </Link>
+              </li>
+            ))}
+          </ol>
+        </div>
+      </section>
+
+      {/* Give */}
+      <section className="relative overflow-hidden bg-forest py-20 text-white sm:py-28">
+        <SunShape className="pointer-events-none absolute -right-32 -top-6 w-[40rem] opacity-30" />
+        <div className="container-x relative grid items-center gap-12 lg:grid-cols-2 lg:gap-20">
+          <div>
+            <p className="eyebrow !text-sun">See what your gift does</p>
+            <h2 className="title-2 mt-3">Pick an amount. <em className="text-sun">Watch it become something.</em></h2>
+            <p className="mt-5 max-w-lg text-lg leading-relaxed text-white/80">
+              Every amount below is costed from our own programmes. Monthly gifts go furthest, because they let us plan a year ahead.
+            </p>
+            <div className="mt-10 rounded-3xl border border-white/15 p-6">
+              <p className="text-sm font-semibold uppercase tracking-[0.16em] text-sun">Where every dollar goes</p>
+              <div className="mt-5">
+                <FinanceBreakdown dark />
               </div>
+            </div>
+          </div>
+          <DonationWidget />
+        </div>
+      </section>
+
+      {/* Story */}
+      <section className="container-x py-20 sm:py-28">
+        <div className="grid items-center gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:gap-20">
+          <div className="arch relative mx-auto aspect-[4/5] w-full max-w-md overflow-hidden bg-sage">
+            <Image
+              src="/about.png"
+              alt="A volunteer painting with an elderly woman at a senior activity centre"
+              fill
+              sizes="(max-width: 1024px) 90vw, 40vw"
+              className="object-cover"
+            />
+          </div>
+          <figure>
+            <p className="eyebrow">In their words</p>
+            <blockquote className="mt-5 font-serif text-[clamp(1.6rem,1.2rem+1.6vw,2.4rem)] font-medium leading-[1.25] tracking-[-0.015em] text-ink">
+              <span className="text-sunrise">“</span>{featured.quote}<span className="text-sunrise">”</span>
+            </blockquote>
+            <figcaption className="mt-6 text-ink-soft">
+              <strong className="text-ink">{featured.name}</strong> · {featured.role}
+            </figcaption>
+            <div className="mt-10 grid gap-5 border-t border-line pt-8 sm:grid-cols-2">
+              {moreQuotes.map((t) => (
+                <figure key={t.name}>
+                  <blockquote className="leading-relaxed text-ink">“{t.quote}”</blockquote>
+                  <figcaption className="mt-3 text-sm text-ink-soft"><strong className="text-ink">{t.name}</strong> · {t.role}</figcaption>
+                </figure>
+              ))}
+            </div>
+          </figure>
+        </div>
+      </section>
+
+      {/* Partners */}
+      <section className="container-x pb-20 sm:pb-24" aria-labelledby="partners-heading">
+        <p id="partners-heading" className="text-center text-sm font-semibold uppercase tracking-[0.14em] text-ink-soft">Supported by</p>
+        <ul className="mt-6 flex flex-wrap items-center justify-center gap-x-10 gap-y-4">
+          {partners.map((p) => (
+            <li key={p} className="font-serif text-xl font-semibold tracking-[-0.01em] text-ink-soft">{p}</li>
+          ))}
+        </ul>
+      </section>
+
+      {/* Ways to help */}
+      <section className="border-t border-line bg-paper-2 py-20 sm:py-28">
+        <div className="container-x">
+          <SectionHeading eyebrow="Get involved" title={<>Three ways to <em className="text-sunrise">stand beside us.</em></>} />
+          <div className="grid gap-5 md:grid-cols-3">
+            {waysToHelp.map(({ icon: Icon, ...w }) => (
+              <Link key={w.title} href={w.href} className="card group flex flex-col p-7 transition hover:-translate-y-1 hover:border-forest">
+                <span className="arch grid h-16 w-14 place-items-end justify-center bg-sage pb-3 text-forest"><Icon className="size-6" /></span>
+                <h3 className="title-3 mt-6 text-ink">{w.title}</h3>
+                <p className="mt-3 flex-1 leading-relaxed text-ink-soft">{w.body}</p>
+                <span className="mt-6 inline-flex items-center gap-2 font-semibold text-forest group-hover:text-sunrise">
+                  {w.cta} <ArrowRight className="size-4 transition group-hover:translate-x-1" />
+                </span>
+              </Link>
             ))}
           </div>
         </div>
       </section>
-
-      {/* Testimonials */}
-      <section className="py-20 md:py-28 bg-white overflow-hidden">
-        <div className="container mx-auto px-4 md:px-6">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-4 tracking-tight">Voices of Impact</h2>
-            <p className="text-slate-600 text-lg max-w-2xl mx-auto">Hear from the individuals whose lives have been touched by our community.</p>
-          </div>
-          
-          <div className="grid md:grid-cols-3 gap-8">
-            {[
-              {
-                text: "LifeSpring Foundation gave my children the educational support they needed when times were incredibly tough. We are forever grateful for the kindness.",
-                name: "Sarah Lee",
-                role: "Beneficiary Parent",
-                avatar: "https://i.pravatar.cc/150?img=47"
-              },
-              {
-                text: "Volunteering here has been the most rewarding experience of my life. Seeing the direct impact we make on the elderly community is truly inspiring.",
-                name: "David Chen",
-                role: "Lead Volunteer",
-                avatar: "https://i.pravatar.cc/150?img=11"
-              },
-              {
-                text: "The vocational training program completely turned my life around. I now have a stable job and can support my family with dignity.",
-                name: "Ahmad Ibrahim",
-                role: "Program Graduate",
-                avatar: "https://i.pravatar.cc/150?img=33"
-              }
-            ].map((testimonial, i) => (
-              <div key={i} className="bg-slate-50 rounded-3xl p-8 md:p-10 relative border border-slate-100 shadow-sm hover:shadow-md transition-shadow">
-                <Quote className="absolute top-8 right-8 h-10 w-10 text-slate-200" />
-                <div className="flex gap-1 text-accent mb-6">
-                  {[...Array(5)].map((_, i) => (
-                    <svg key={i} className="w-5 h-5 fill-current" viewBox="0 0 20 20">
-                      <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                    </svg>
-                  ))}
-                </div>
-                <p className="text-slate-700 italic mb-8 leading-relaxed">
-                  "{testimonial.text}"
-                </p>
-                <div className="flex items-center gap-4 mt-auto">
-                  <img src={testimonial.avatar} alt={testimonial.name} className="w-12 h-12 bg-slate-200 rounded-full object-cover" />
-                  <div>
-                    <div className="font-bold text-slate-900">{testimonial.name}</div>
-                    <div className="text-sm text-slate-500">{testimonial.role}</div>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Contact CTA */}
-      <section className="py-20 bg-emerald-900 text-white relative overflow-hidden">
-        <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1469571486292-0ba58a3f068b?q=80&w=2070')] bg-cover bg-center opacity-10 mix-blend-overlay" />
-        <div className="container mx-auto px-4 md:px-6 relative z-10 text-center max-w-3xl">
-          <h2 className="text-3xl md:text-5xl font-bold mb-6">Ready to Make a Difference?</h2>
-          <p className="text-lg md:text-xl text-emerald-100 mb-8 leading-relaxed">
-            Whether you want to volunteer your time, make a donation, or partner with us, your contribution helps build a brighter future.
-          </p>
-          <div className="flex flex-col sm:flex-row justify-center gap-4">
-            <Button size="lg" className="bg-accent text-slate-900 hover:bg-accent/90 text-base h-14 px-8 font-bold">
-              <Link href="/volunteer">Become a Volunteer</Link>
-            </Button>
-            <Button size="lg" variant="outline" className="bg-transparent border-white text-white hover:bg-white/10 hover:text-white text-base h-14 px-8">
-              <Link href="/contact">Get in Touch</Link>
-            </Button>
-          </div>
-        </div>
-      </section>
-    </div>
+    </>
   );
 }

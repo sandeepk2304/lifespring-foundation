@@ -1,121 +1,63 @@
-# LifeSpring Foundation | Singapore
+# LifeSpring: a website template for non-profits
 
-<div align="center">
-  <img src="public/mockup.png" alt="LifeSpring Foundation Website Screenshot" width="800" style="border-radius: 12px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);" />
-  <br />
-  <em>A premium, responsive, and highly optimized landing page for a modern charitable foundation.</em>
-</div>
+A fast, accessible, donation-focused website for charities and NGOs. LifeSpring Foundation is a **fictional** Singapore charity used to show the template; every name, number and story on the demo is made up.
 
-<br />
+**Live demo:** https://lifespring-foundation.vercel.app
 
-## 🌿 About The Project
+![Home page](docs/screenshot.webp)
 
-**LifeSpring Foundation** is a modern, high-converting corporate website built to represent a Singapore-based charity. The objective was to design an extremely clean, trustworthy, and visually appealing web presence that empowers the community and encourages volunteerism and donations.
+## What's included
 
-The platform relies on a bespoke **Green Theme** (Emerald & Teal), modern micro-animations, and a highly polished UI to leave a lasting, premium impression on visitors.
+| | |
+|---|---|
+| **Donations** | One-time or monthly, preset and custom amounts, live "what your gift does" text, Stripe Checkout (server-validated amounts; cards, Apple Pay, Google Pay) or any hosted payment link, PayNow UEN option, thank-you page with a monthly upsell |
+| **Tax deduction (SG)** | Optional NRIC/FIN/UEN and name for IRAS auto-inclusion, validated on both sides and passed to the payment record |
+| **Appeals** | Campaign progress bar with goal, donors and end date |
+| **Transparency** | Governance page (UEN, charity no., IPC validity, board, annual reports, policies, Code of Governance), "where every dollar goes", impact numbers, before/after stories, partners |
+| **Forms** | Volunteer application, contact and newsletter, emailed via Resend, with validation, a honeypot, rate limiting, PDPA notice and a separate unticked marketing opt-in |
+| **Mobile** | Sticky Donate + WhatsApp bar, full-screen menu, tested at 390 px |
+| **SEO** | Per-page titles and descriptions, `NGO` structured data, sitemap, robots, Open Graph |
+| **Quality** | Lighthouse (mobile) ~90–95 performance, 100 accessibility, best practices and SEO; security headers; keyboard and screen-reader friendly |
+| **Typography** | Fraunces (soft editorial serif) for headings, DM Sans for reading; fluid type scale (`display`, `title-1…3`, `figure`) in `globals.css` |
 
----
+Pages: home, about, programmes, impact, governance, donate (+ thank you), volunteer, contact, privacy, terms, 404.
 
-## 🚀 Why Next.js? (Business Value)
+## Rebrand for a new organisation
 
-When building a high-converting landing page for a foundation or corporate client, performance and visibility are everything. I chose **Next.js** to deliver tangible business benefits:
+1. **Content:** edit [`src/config/site.ts`](src/config/site.ts): name, UEN, IPC validity, contact details, PayNow UEN, programmes, stats, campaign, finances, governance, stories, team, FAQs. Set `demo: false`.
+2. **Colours:** change the variables at the top of [`src/app/globals.css`](src/app/globals.css) (`--forest`, `--sunrise`, `--sun`, `--paper`). Keep text colours at 4.5:1 contrast.
+3. **Images:** replace `public/hero.png` and `public/about.png` with the organisation's own photos (portrait, about 4:5).
+4. **Logo:** update `src/components/site/Logo.tsx` and `src/app/icon.svg`.
+5. **Legal:** have the privacy and terms text reviewed for the organisation, and confirm the tax-deduction wording with IRAS's current rules (250% for IPC donations to 31 Dec 2026; Budget 2026 announced an extension to 2029).
 
-- **Unmatched SEO & Discoverability:** Unlike standard React apps, Next.js provides Server-Side Rendering (SSR). This means Google and other search engines can instantly crawl the page content, helping the organization rank higher and reach more potential donors organically.
-- **Lightning-Fast Load Times:** High bounce rates kill conversions. By leveraging the Next.js App Router and advanced asset optimization, the website loads almost instantly, keeping users engaged.
-- **Enterprise-Grade Reliability:** Next.js provides a robust, edge-ready architecture that scales effortlessly. If traffic spikes during a major fundraising campaign, the site remains perfectly stable and fast.
-
-## 💎 Features Implemented & Client Benefits
-
-- **Conversion-Optimized UI:** Designed with sticky, high-visibility Calls-to-Action ("Donate Now", "Get Involved") that naturally guide the user's eye and maximize conversion rates.
-- **Trust-Building Aesthetics:** A custom psychology-backed **Green Theme** paired with modern glassmorphism and Framer Motion micro-animations establishes immediate credibility and professionalism—crucial for attracting corporate sponsors.
-- **Mobile-First Perfection:** Rebuilt from the ground up using Tailwind CSS v4, ensuring complex interactive layouts (like the dynamic floating header) scale flawlessly to any mobile device, capturing the massive segment of smartphone users.
-- **Future-Proof Architecture:** Built with highly modular React UI components. This makes it incredibly easy and cost-effective for a client to add new pages, features, or CMS integrations in the future.
-
----
-
-
-
-## 💻 Tech Stack
-
-This project is built using bleeding-edge web technologies to ensure maximum performance, accessibility, and an incredible developer experience:
-
-- **Framework:** [Next.js 16 (Turbopack)](https://nextjs.org/) - App Router for server-side rendering, advanced routing, and lightning-fast builds.
-- **Library:** [React 19](https://react.dev/) - Next-generation React features.
-- **Styling:** [Tailwind CSS v4](https://tailwindcss.com/) - Utility-first CSS framework using the brand new CSS-driven `@theme` configuration.
-- **UI Architecture:** [Shadcn UI](https://ui.shadcn.com/) & [Base UI](https://base-ui.com/) - Accessible, unstyled, and fully customizable headless components.
-- **Animations:** [Framer Motion](https://www.framer.com/motion/) & `tw-animate-css` - For smooth, physics-based micro-interactions and scroll reveals.
-- **Icons:** [Lucide React](https://lucide.dev/) - Beautiful, consistent, and lightweight iconography.
-- **Typography:** Highly optimized `next/font` (Inter).
-
----
-
-## ✨ Key Features
-
-- **High-Fidelity UI/UX:** A custom hero section featuring soft abstract green gradients, floating interaction badges, and precise visual hierarchy.
-- **Dynamic Navigation:** A highly responsive header that transitions from transparent to a floating "glassmorphic" pill layout upon scrolling.
-- **Component-Driven Design:** Clean, modular React components for immense reusability (Buttons, Logos, Cards).
-- **Extension-Safe Hydration:** Robust Next.js setup that safely handles third-party browser extensions (like ColorZilla or Dark Reader) via root-level hydration wrappers.
-- **Fully Responsive:** Flawless scaling from small mobile devices up to ultra-wide desktop monitors without breaking layout integrity.
-
----
-
-## 🚀 Getting Started
-
-### Prerequisites
-Make sure you have [Node.js](https://nodejs.org/) installed (v20+ recommended).
-
-### Installation
-
-1. **Clone the repository**
-   ```bash
-   git clone https://github.com/yourusername/lifespring-foundation.git
-   ```
-
-2. **Navigate to the project directory**
-   ```bash
-   cd lifespring-foundation
-   ```
-
-3. **Install dependencies**
-   ```bash
-   npm install
-   ```
-
-### Running the Development Server
+## Go live
 
 ```bash
-npm run dev
+cp .env.example .env.local   # fill in the keys you need
+npm install
+npm run dev                  # http://localhost:3000
 ```
 
-Open [http://localhost:3000](http://localhost:3000) (or whichever port Next.js assigns) with your browser to see the result.
+| To turn on | Set |
+|---|---|
+| Card payments (one-time + monthly) | `STRIPE_SECRET_KEY` |
+| Or a hosted donation page (Giving.sg, Stripe Payment Link…) | `NEXT_PUBLIC_DONATE_URL` |
+| Form emails | `RESEND_API_KEY`, `ENQUIRY_TO_EMAIL`, `ENQUIRY_FROM_EMAIL` |
+| Correct canonical URLs | `NEXT_PUBLIC_SITE_URL` |
 
-### ☁️ Deployment (Vercel)
+With `demo: true` and no keys, forms and donations show a clear "demo mode" message instead of failing. With `demo: false` and no keys, visitors are asked to email instead.
 
-This project is highly optimized for seamless deployment on [Vercel](https://vercel.com/), the native hosting platform for Next.js. 
+Deploy on Vercel: import the repo, add the environment variables, deploy.
 
-1. Push your code to a GitHub, GitLab, or Bitbucket repository.
-2. Log in to Vercel and click **Add New...** > **Project**.
-3. Import your repository.
-4. Vercel will automatically detect the **Next.js** framework and configure the correct build settings (`npm run build`).
-5. Click **Deploy**.
+## Stack
 
-*Zero-config deployments are fully supported out of the box, taking full advantage of Vercel's Edge Network for instant, globally cached delivery.*
+Next.js 16 (App Router) · React 19 · TypeScript · Tailwind CSS 4 · lucide-react. No database; forms and payments use Resend and Stripe over their REST APIs.
 
----
-
-## 📂 Project Structure
-
-- **`src/app/`**: Next.js App Router definitions (`page.tsx`, `layout.tsx`, global CSS variables).
-- **`src/components/ui/`**: Reusable, atomic UI elements (`Button.tsx`, `logo.tsx`).
-- **`src/components/layout/`**: Structural components responsible for page framing (`Header.tsx`, `Footer.tsx`).
-- **`public/`**: Static assets, graphics, and images.
+```bash
+npm run build   # production build
+npm run lint    # ESLint
+```
 
 ---
 
-## 🤝 Need a Custom Website?
-
-Are you looking to build a premium, high-converting web application for your business or non-profit? Or perhaps you need customizations, support, or integrations added to a project like this?
-
-I specialize in building tailored, high-performance web experiences that drive real business results.
-
-📩 **Let's discuss your project!** Feel free to reach out to me for freelance inquiries, customizations, or technical consulting.
+Designed and built by [Sandeep Kumar](https://github.com/sandeepk2304). Need a site like this for your organisation? Get in touch.

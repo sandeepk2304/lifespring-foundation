@@ -1,30 +1,21 @@
+import type { Metadata } from "next";
+import { site } from "@/config/site";
+import { LegalPage } from "@/components/site/LegalPage";
+
+export const metadata: Metadata = { title: "Privacy policy", alternates: { canonical: "/privacy" } };
+
 export default function PrivacyPage() {
   return (
-    <div className="flex flex-col min-h-screen">
-      <section className="pt-32 pb-20 bg-slate-50 text-center px-4 border-b border-slate-100">
-        <h1 className="text-4xl md:text-5xl font-bold text-slate-900 mb-6">Privacy Policy</h1>
-        <p className="text-lg text-slate-600 max-w-2xl mx-auto">
-          We are committed to protecting your personal information and your right to privacy.
-        </p>
-      </section>
-      <section className="py-20 px-4 bg-white">
-        <div className="container mx-auto max-w-3xl space-y-6 text-slate-600 leading-relaxed [&>h2]:text-2xl [&>h2]:font-bold [&>h2]:text-slate-900 [&>h2]:mt-12 [&>h2]:mb-4">
-          <h2>1. Information We Collect</h2>
-          <p>We collect personal information that you voluntarily provide to us when you express an interest in obtaining information about us or our products and Services, when you participate in activities on the Website, or otherwise when you contact us.</p>
-          
-          <h2>2. How We Use Your Information</h2>
-          <p>We process your information for purposes based on legitimate business interests, the fulfillment of our contract with you, compliance with our legal obligations, and/or your consent.</p>
-          
-          <h2>3. Will Your Information Be Shared With Anyone?</h2>
-          <p>We only share information with your consent, to comply with laws, to provide you with services, to protect your rights, or to fulfill business obligations.</p>
-          
-          <h2>4. How Long Do We Keep Your Information?</h2>
-          <p>We keep your information for as long as necessary to fulfill the purposes outlined in this privacy notice unless otherwise required by law.</p>
-
-          <h2>5. Contact Us</h2>
-          <p>If you have questions or comments about this notice, you may email us at privacy@lifespring.sg.</p>
-        </div>
-      </section>
-    </div>
+    <LegalPage
+      title="Privacy policy"
+      updated="14 October 2026"
+      sections={[
+        { heading: "What we collect", body: "The details you give us in our forms (name, email, phone, message), your donation amount and frequency, and, if you choose, your NRIC or UEN for tax-deduction filing. Card details are handled by our payment provider and never reach our servers." },
+        { heading: "How we use it", body: "To reply to you, process donations and receipts, file tax deductions with IRAS on your behalf, coordinate volunteering, and send our newsletter if you subscribed. We follow Singapore's Personal Data Protection Act (PDPA)." },
+        { heading: "Who we share it with", body: "Only service providers that help us run the site and process donations (for example our email and payment providers), and authorities where the law requires. We never sell or rent your data." },
+        { heading: "How long we keep it", body: "Donation records are kept as long as charity and tax law require. Enquiries are deleted after 24 months, and you can unsubscribe from emails at any time." },
+        { heading: "Your rights", body: `You can ask to see, correct or delete your personal data, or withdraw consent, by emailing ${site.email}. Our Data Protection Officer will reply within 30 days.` },
+      ]}
+    />
   );
 }
