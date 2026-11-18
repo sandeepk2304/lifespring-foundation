@@ -28,7 +28,7 @@ Pages: home, about, programmes, impact, governance, donate (+ thank you), volunt
 2. **Colours:** change the variables at the top of [`src/app/globals.css`](src/app/globals.css) (`--forest`, `--sunrise`, `--sun`, `--paper`). Keep text colours at 4.5:1 contrast.
 3. **Images:** replace `public/hero.png` and `public/about.png` with the organisation's own photos (portrait, about 4:5).
 4. **Logo:** update `src/components/site/Logo.tsx` and `src/app/icon.svg`.
-5. **Legal:** have the privacy and terms text reviewed for the organisation, and confirm the tax-deduction wording with IRAS's current rules (250% for IPC donations to 31 Dec 2026; Budget 2026 announced an extension to 2029).
+5. **Legal:** have the privacy and terms text reviewed for the organisation, and confirm the tax-deduction rate and deadline with IRAS before launch; the demo copy (`taxNote` in `site.ts` and the donation form) assumes the 250% deduction for IPC donations.
 
 ## Go live
 
@@ -60,4 +60,14 @@ npm run lint    # ESLint
 
 ---
 
-Designed and built by [Sandeep Kumar](https://github.com/sandeepk2304). Need a site like this for your organisation? Get in touch.
+## Further reading
+
+How the performance and SEO numbers above are reached, written up on [hisandeep.com](https://www.hisandeep.com):
+
+- [How to fix Largest Contentful Paint in Next.js](https://www.hisandeep.com/blog/fix-largest-contentful-paint-nextjs)
+- [How to fix Cumulative Layout Shift in Next.js](https://www.hisandeep.com/blog/fix-cumulative-layout-shift-nextjs)
+- [A technical SEO checklist for the Next.js App Router](https://www.hisandeep.com/blog/technical-seo-checklist-nextjs)
+
+---
+
+Built by [Sandeep Kumar](https://www.hisandeep.com), full-stack engineer.
