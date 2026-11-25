@@ -1,5 +1,6 @@
 import { site } from "@/config/site";
 import { validateEnquiry, type Enquiry } from "@/lib/enquiry";
+import { sendMail } from "@/lib/mail";
 
 // Very small per-IP limiter. Good enough for a single region; use Upstash or similar at scale.
 const hits = new Map<string, number[]>();
@@ -50,18 +51,15 @@ export async function POST(request: Request) {
     body.message && `\n${body.message}`,
   ].filter(Boolean);
 
-  const res = await fetch("https://api.resend.com/emails", {
-    method: "POST",
-    headers: { Authorization: `Bearer ${apiKey}`, "Content-Type": "application/json" },
-    body: JSON.stringify({
-      from: process.env.ENQUIRY_FROM_EMAIL ?? `${site.shortName} website <onboarding@resend.dev>`,
-      to: [to],
-      reply_to: body.email,
-      subject: `${subjects[body.kind!]}${body.name ? ` from ${body.name}` : ""}`,
-      text: lines.join("\n"),
-    }),
+  const sent = await sendMail({
+    apiKey,
+    to,
+    from: process.env.ENQUIRY_FROM_EMAIL ?? `${site.shortName} website <onboarding@resend.dev>`,
+    replyTo: body.email,
+    subject: `${subjects[body.kind!]}${body.name ? ` from ${body.name}` : ""}`,
+    text: lines.join("\n"),
   });
 
-  if (!res.ok) return Response.json({ ok: false, error: "We couldn't send that right now. Please email us directly." }, { status: 502 });
+  if (!sent) return Response.json({ ok: false, error: "We couldn't send that right now. Please email us directly." }, { status: 502 });
   return Response.json({ ok: true });
 }
