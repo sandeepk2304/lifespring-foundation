@@ -91,4 +91,10 @@ How the performance and SEO numbers above are reached, written up on [hisandeep.
 
 ---
 
+## Licence
+
+The code is [MIT](LICENSE). The images in `public/` are samples for the demo: replace them with your own.
+
+---
+
 Built by [Sandeep Kumar](https://www.hisandeep.com), full-stack engineer.
